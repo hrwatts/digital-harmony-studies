@@ -103,7 +103,11 @@ Details: [docs/export-pipeline.md](docs/export-pipeline.md)
 
 ## Public deployment
 
-The repo is set up for GitHub Pages as a project site. Vite builds with a relative base, so the output works under `https://<owner>.github.io/<repo>/` without route rewriting.
+The repo includes a GitHub Pages Actions workflow for project-site deployment. Vite builds with a relative base, so the output works under `https://<owner>.github.io/<repo>/` without route rewriting.
+
+Repository setting required once:
+
+- GitHub -> `Settings` -> `Pages` -> `Build and deployment` -> `Source: GitHub Actions`
 
 Workflow files:
 
