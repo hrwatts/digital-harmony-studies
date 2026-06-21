@@ -1,0 +1,25 @@
+{
+  "name": "digital-harmony-studies",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Public-facing John Whitney-inspired generative motion studies with deterministic browser rendering and export.",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "check": "tsc --noEmit && vitest run && node scripts/check-public-text.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.9"
+  }
+}
+
