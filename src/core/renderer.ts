@@ -23,7 +23,7 @@ export function renderScene(
   ctx.save();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.fillStyle = rgba(scene.background, hardReset ? 1 : scene.fadeAlpha);
-  ctx.fillRect(0, 0, viewport.width, viewport.height);
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.restore();
 
   ctx.save();
@@ -58,4 +58,3 @@ export function renderScene(
   }
   ctx.restore();
 }
-
