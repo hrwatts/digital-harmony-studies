@@ -195,6 +195,7 @@ export function boot(root: HTMLDivElement | null): void {
   `;
 
   const canvas = root.querySelector<HTMLCanvasElement>("#preview-canvas");
+  const canvasWrap = root.querySelector<HTMLDivElement>(".stage__canvas-wrap");
   const detail = root.querySelector<HTMLDivElement>("#sketch-detail");
   const sketchList = root.querySelector<HTMLDivElement>("#sketch-list");
   const statusSketch = root.querySelector<HTMLSpanElement>("#status-sketch");
@@ -207,6 +208,7 @@ export function boot(root: HTMLDivElement | null): void {
 
   if (
     !canvas ||
+    !canvasWrap ||
     !detail ||
     !sketchList ||
     !statusSketch ||
@@ -323,6 +325,21 @@ export function boot(root: HTMLDivElement | null): void {
   bindControl("trail");
   bindControl("scale");
 
-  const resize = () => player.resize();
+  let resizeQueued = false;
+  const resize = () => {
+    if (resizeQueued) {
+      return;
+    }
+    resizeQueued = true;
+    window.requestAnimationFrame(() => {
+      resizeQueued = false;
+      player.resize();
+    });
+  };
+
+  const resizeObserver =
+    typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => resize());
+  resizeObserver?.observe(canvasWrap);
   window.addEventListener("resize", resize);
+  resize();
 }
